@@ -1,0 +1,100 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-clearing text-ink font-sans antialiased;
+    font-feature-settings: "ss01" 1, "case" 1;
+  }
+
+  ::selection {
+    background: #b08a4e;
+    color: #f4efe2;
+  }
+
+  /* Visible, brand-colored focus ring — accessibility without a generic blue halo */
+  :focus-visible {
+    outline: 2px solid #b08a4e;
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  h1,
+  h2,
+  h3 {
+    @apply font-display font-normal;
+    letter-spacing: -0.01em;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@layer components {
+  /* Small tracked-out uppercase label used as a section eyebrow throughout */
+  .eyebrow {
+    @apply font-data uppercase text-[0.72rem] tracking-widest2 text-brass;
+  }
+
+  /* The two registers the page alternates between: canopy (shade) / clearing (light) */
+  .theme-canopy {
+    @apply bg-canopy text-ivory;
+  }
+  .theme-clearing {
+    @apply bg-clearing text-ink;
+  }
+
+  .rule {
+    @apply h-px w-full bg-current opacity-10;
+  }
+
+  .link-arrow {
+    @apply inline-flex items-center gap-2;
+  }
+  .link-arrow svg {
+    @apply transition-transform duration-500 ease-signature;
+  }
+  .link-arrow:hover svg {
+    transform: translateX(6px);
+  }
+
+  .container-canvas {
+    @apply mx-auto w-full max-w-canvas px-6 sm:px-10 lg:px-16;
+  }
+}
+
+@layer utilities {
+  .text-display-hero {
+    font-size: clamp(3.2rem, 11vw, 10.5rem);
+    line-height: 0.9;
+  }
+  .text-display-xl {
+    font-size: clamp(2.4rem, 6vw, 5.5rem);
+    line-height: 1.02;
+  }
+  .text-display-lg {
+    font-size: clamp(1.9rem, 3.4vw, 3.4rem);
+    line-height: 1.08;
+  }
+  .text-display-md {
+    font-size: clamp(1.4rem, 2.2vw, 2rem);
+    line-height: 1.15;
+  }
+}
